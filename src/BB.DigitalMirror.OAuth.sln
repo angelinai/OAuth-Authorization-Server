@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2019
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BB.DigitalMirror.OAuth", "BB.DigitalMirror.OAuth\BB.DigitalMirror.OAuth.csproj", "{3DAEF0F0-C8E9-45D9-BE55-1D8C1078B3CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BB.DigitalMirror.OAuth", "BB.DigitalMirror.OAuth\BB.DigitalMirror.OAuth.csproj", "{3DAEF0F0-C8E9-45D9-BE55-1D8C1078B3CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BFD039C2-BFB9-41AD-A799-B0FBDC86D8F0}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

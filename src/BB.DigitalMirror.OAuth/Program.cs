@@ -19,6 +19,7 @@ namespace BB.DigitalMirror.OAuth
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseUrls("http://localhost:59418")
                 .UseStartup<Startup>();
     }
 }
