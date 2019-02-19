@@ -28,7 +28,7 @@ namespace BB.DigitalMirror.OAuth
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddMvc();
+            services.AddMvc();
             
             // registers the IdentityServer services in DI and
             // it registers In-memory store for runtime state
@@ -57,7 +57,7 @@ namespace BB.DigitalMirror.OAuth
 
             app.UseIdentityServer();
             app.UseStaticFiles();
-            // app.UseMvcWithDefaultRoute();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
