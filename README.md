@@ -8,3 +8,8 @@
 	2. Web applications 
 	3. SPAs 
 	4. Native/mobile apps	
+
+	Discovery endpoint
+	http://host:port/.well-known/openid-configuration
+
+	http://localhost:5000/.well-known/openid-configuration

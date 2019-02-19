@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BB.DigitalMirror.OAuth.Configuration;
+using IdentityServer4.Models;
+using IdentityServer4.Test;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,15 +28,19 @@ namespace BB.DigitalMirror.OAuth
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // services.AddMvc();
+            
             // registers the IdentityServer services in DI and
             // it registers In-memory store for runtime state
             // for production scenarios you need a persistent or shared store
+            
             services.AddIdentityServer()
-                .AddDeveloperSigningCredential()
-                .AddInMemoryApiResources(InMemoryConfiguration.ApiResources())
                 .AddInMemoryClients(InMemoryConfiguration.Clients())
-                .AddTestUsers(InMemoryConfiguration.TestUsers().ToList());
-
+                .AddInMemoryIdentityResources(InMemoryConfiguration.GetIdentityResources())
+                .AddInMemoryApiResources(InMemoryConfiguration.ApiResources())
+                .AddTestUsers(InMemoryConfiguration.TestUsers().ToList())
+                .AddDeveloperSigningCredential();
+           
             // TODO: remove InMemory configs for production release :)
         }
 
@@ -42,10 +48,16 @@ namespace BB.DigitalMirror.OAuth
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
-            {
-                loggerFactory.AddConsole();
+            {                
                 app.UseDeveloperExceptionPage();
             } 
+
+            loggerFactory.AddConsole();
+            loggerFactory.AddDebug(); // enable debug logging
+
+            app.UseIdentityServer();
+            app.UseStaticFiles();
+            // app.UseMvcWithDefaultRoute();
         }
     }
 }
