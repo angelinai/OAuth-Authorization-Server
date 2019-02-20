@@ -1,3 +1,5 @@
+I am working on this as time permits!
+
 # OAuth Authorization Server #
 **OAuth Authorization Server - .NET Core and IdentityServer4**
 
@@ -11,5 +13,4 @@
 
 	Discovery endpoint
 	http://host:port/.well-known/openid-configuration
-
-	http://localhost:5000/.well-known/openid-configuration
+ 
