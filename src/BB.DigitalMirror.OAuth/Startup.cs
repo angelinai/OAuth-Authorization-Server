@@ -29,28 +29,26 @@ namespace BB.DigitalMirror.OAuth
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            
+
             // registers the IdentityServer services in DI and
             // it registers In-memory store for runtime state
             // for production scenarios you need a persistent or shared store
-            
+            // TODO: remove InMemory configs for production release :)
             services.AddIdentityServer()
                 .AddInMemoryClients(InMemoryConfiguration.Clients())
                 .AddInMemoryIdentityResources(InMemoryConfiguration.GetIdentityResources())
                 .AddInMemoryApiResources(InMemoryConfiguration.ApiResources())
                 .AddTestUsers(InMemoryConfiguration.TestUsers().ToList())
                 .AddDeveloperSigningCredential();
-           
-            // TODO: remove InMemory configs for production release :)
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
-            {                
+            {
                 app.UseDeveloperExceptionPage();
-            } 
+            }
 
             loggerFactory.AddConsole();
             loggerFactory.AddDebug(); // enable debug logging
