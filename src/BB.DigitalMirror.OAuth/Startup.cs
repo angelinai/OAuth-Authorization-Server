@@ -35,11 +35,10 @@ namespace BB.DigitalMirror.OAuth
             // for production scenarios you need a persistent or shared store
             // TODO: remove InMemory configs for production release :)
             services.AddIdentityServer()
-                .AddInMemoryClients(InMemoryConfiguration.Clients())
+                .AddDeveloperSigningCredential()  
+                .AddTestUsers(InMemoryConfiguration.GetTestUsers().ToList())
                 .AddInMemoryIdentityResources(InMemoryConfiguration.GetIdentityResources())
-                .AddInMemoryApiResources(InMemoryConfiguration.ApiResources())
-                .AddTestUsers(InMemoryConfiguration.TestUsers().ToList())
-                .AddDeveloperSigningCredential();
+                .AddInMemoryClients(InMemoryConfiguration.GetClients());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +52,9 @@ namespace BB.DigitalMirror.OAuth
             loggerFactory.AddConsole();
             loggerFactory.AddDebug(); // enable debug logging
 
+            // add identity server to the request pipeline
             app.UseIdentityServer();
+
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
         }

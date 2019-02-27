@@ -7,100 +7,65 @@ using System.Security.Claims;
 namespace BB.DigitalMirror.OAuth.Configuration
 {
     public class InMemoryConfiguration
-    {
-        public static IEnumerable<IdentityResource> GetIdentityResources()
-        {
-            return new List<IdentityResource> {
-                new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
-                new IdentityResources.Email(),
-                new IdentityResource {
-                    Name = "role",
-                    UserClaims = new List<string> {"role"}
-                }
-            };
-        }
-
-        /// <summary>
-        /// Set up Api Resources
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<ApiResource> ApiResources()
-        {
-            return new[]
-            {
-                new ApiResource("luxgoods", "Luxury Goods"),
-                new ApiResource
-                {
-                    Name = "customAPI",
-                    DisplayName = "Custom API",
-                    Description = "Custom API Access",
-                    UserClaims = new List<string> {"role"},
-                    ApiSecrets = new List<Secret> {new Secret("scopeSecret".Sha256())},
-                    Scopes = new List<Scope>
-                    {
-                        new Scope("customAPI.read"),
-                        new Scope("customAPI.write")
-                    }
-                }
-            };
-        }
-
-        /// <summary>
-        /// Set up clients
-        /// </summary>
-        /// <returns></returns>
-        public static IEnumerable<Client> Clients()
-        {
-            //TODO: replace this area with value from a Key/Secret Vault
-            //var clientSecret = "secret";
-            return new[]
-            {
-                    new Client {
-                        ClientId = "oauthClient",
-                        ClientName = "Example Client Credentials Client Application",
-                        AllowedGrantTypes = GrantTypes.ClientCredentials,
-                        ClientSecrets = new List<Secret> {
-                            new Secret("superSecretPassword".Sha256())},
-                        AllowedScopes = new List<string> {"customAPI.read"}
-                    },
-                    new Client
-                        {
-                            ClientId = "luxgoods",
-                            ClientSecrets = new List<Secret>
-                            {
-                                new Secret("superSecretPassword".Sha256())
-                            },
-                            // Select a grant flow - client credentials, hybrid, resource owner password, token
-                            AllowedGrantTypes = GrantTypes.ResourceOwnerPasswordAndClientCredentials,
-                            AllowedScopes = new List<string>()
-                            {
-                                "luxgoods"
-                            }
-                        }
-            };
-        }
-
+    { 
         /// <summary>
         /// Setup users
         /// </summary>
         /// <returns></returns>
-        public static IList<TestUser> TestUsers()
+        public static IList<TestUser> GetTestUsers()
         {
             return new List<TestUser>
             {
                   new TestUser {
                     SubjectId = "5BE86359-073C-434B-AD2D-A3932222DABE",
-                    Username = "angelina",
+                    Username = "Claire",
                     Password = "password",
+
                     Claims = new List<Claim> {
-                        new Claim(JwtClaimTypes.Email,
-                            "tester1@mailinator.com"),
-                        new Claim(JwtClaimTypes.Role,
-                            "admin")
+                        //  claire underwood
+                        new Claim(JwtClaimTypes.Email, "cUnderwood@wtehouse.gov"),
+                        new Claim(JwtClaimTypes.Role, "admin"),
+                        new Claim("given_name", "Claire"),
+                        new Claim("family_name", "Underwood")
+                    }
+                },
+                    new TestUser {
+                    SubjectId = "7BC22B93-8591-41F5-9F42-56187FE15A2A",
+                    Username = "Frank",
+                    Password = "password",
+
+                    Claims = new List<Claim> {
+                        //  claire underwood
+                        new Claim(JwtClaimTypes.Email, "fUnderwood@wtehouse.gov"),
+                        new Claim(JwtClaimTypes.Role, "admin"),
+                        new Claim("given_name", "Frank"),
+                        new Claim("family_name", "Underwood")
                     }
                 }
             };
+        }
+
+       /// <summary>
+       /// Define which identity related scopes we'll be supported
+       /// </summary>
+       /// <returns>
+       ///  Returns supported identity related scopes
+       /// </returns>
+        public static IEnumerable<IdentityResource> GetIdentityResources()
+        {
+            var identityResources = new List<IdentityResource>
+            {
+                new IdentityResources.OpenId(), // required for OpenID Connect, returns subject   
+                new IdentityResources.Profile(), // includes given name, family names
+                new IdentityResources.Email() 
+            };
+
+            return identityResources;
+        }
+
+        public static IEnumerable<Client> GetClients()
+        {
+            return new List<Client>();
         }
     }
 }
