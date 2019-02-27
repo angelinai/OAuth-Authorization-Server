@@ -14,3 +14,8 @@ I am working on this as time permits!
 	Discovery endpoint
 	http://host:port/.well-known/openid-configuration
  
+
+**SSL / Cert Issues**
+
+IIS Express Development cert has to be imported into the dev machine's Trusted Root Certificate Store
+in order to run this over TLS.
