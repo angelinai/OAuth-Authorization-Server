@@ -10,9 +10,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BB.DigitalMirror.API", "BB.DigitalMirror.API\BB.DigitalMirror.API.csproj", "{618DC15A-ED26-4F16-9124-AB6BDF41E89B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BB.DigitalMirror.API", "BB.DigitalMirror.API\BB.DigitalMirror.API.csproj", "{618DC15A-ED26-4F16-9124-AB6BDF41E89B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BB.DigitalMirror.Client", "BB.DigitalMirror.Client\BB.DigitalMirror.Client.csproj", "{8DC5D61F-5538-445A-99B1-8F3AD55E969F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BB.DigitalMirror.Client", "BB.DigitalMirror.Client\BB.DigitalMirror.Client.csproj", "{8DC5D61F-5538-445A-99B1-8F3AD55E969F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IDP", "IDP", "{4E012BD7-C1A8-4C1F-A876-F57C00D70942}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +37,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3DAEF0F0-C8E9-45D9-BE55-1D8C1078B3CD} = {4E012BD7-C1A8-4C1F-A876-F57C00D70942}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4E659A9-56B6-41D7-A9C5-9DE40319C807}

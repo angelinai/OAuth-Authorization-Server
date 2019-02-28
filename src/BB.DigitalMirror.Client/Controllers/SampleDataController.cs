@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BB.DigitalMirror.Client.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
@@ -40,5 +43,7 @@ namespace BB.DigitalMirror.Client.Controllers
                 }
             }
         }
+
+        //For demo purposes
     }
 }
